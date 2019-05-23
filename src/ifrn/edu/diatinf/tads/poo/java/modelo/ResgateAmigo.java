@@ -36,8 +36,8 @@ import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 		
 	}
 	
-	public void AdotarAnimal() {
-		
+	public void AdotarAnimal(int id) {
+
 	}
 	
 	public void VacinarAnimal() {
@@ -52,12 +52,19 @@ import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 		
 	}
 	
-	public void ListarAnimaisDisponiveis() {
-		int i = 1;
-		if (animais.equals(i)) {
-		System.out.println(animal.getNome() + animal.getRaca() + 
-		 animal.getDataChegada());
+	public Animal[] ListarAnimaisDisponiveis() {
+		if(qtdAnimais == 0) {
+			System.out.println("Não existem animais no sistema");	
 		}
+		else {
+			for (int i = 0; i < qtdAnimais; i++) {
+				if (animais[i].getSituacao().equals("1")) {
+					System.out.println(animais[i].getNome());
+				}
+				
+			}
+		}
+		return null;
 	}
 	
 	//Voluntários

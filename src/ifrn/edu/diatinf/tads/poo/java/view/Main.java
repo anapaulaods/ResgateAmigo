@@ -29,7 +29,7 @@ public static void Menu() {
 
 	public static void main(String[] args) {
 		
-		Animal animal = new Animal();
+		//Animal animal = new Animal();
 		Voluntarios voluntarios = new Voluntarios();
 		Doacoes doacoes = new Doacoes();
 		ResgateAmigo resgateAmigo = new ResgateAmigo();
@@ -45,7 +45,7 @@ public static void Menu() {
 			
 
 			if (opcao == 1) { //Cadastrar animal
-				
+				Animal animal = new Animal();
 				System.out.println("Digite o nome do animal:\n");
 				String nome = sc.next();
 				
@@ -55,7 +55,7 @@ public static void Menu() {
 				System.out.println("Qual a raça do animal?\n");
 				String raca = sc.next();
 				
-				System.out.println("Digite o número correspondente a situação do animal: 1 - Para adoção ou 2 - Em tratamento\n");
+				System.out.println("Digite o número correspondente a situação do animal:\n 1 - Para adoção ou 2 - Em tratamento\n");
 				String situacao = sc.next();
 				
 				System.out.println("O animal já tomou alguma vacina? Qual(is)?\n");
@@ -94,7 +94,7 @@ public static void Menu() {
 			}
 			
 			if (opcao == 5) { //Verificar animais disponíveis para adoção
-				resgateAmigo.ListarAnimaisDisponiveis(); 
+				resgateAmigo.ListarAnimaisDisponiveis();
 			}
 			
 			if (opcao == 6) {
