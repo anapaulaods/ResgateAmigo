@@ -36,8 +36,22 @@ import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 		
 	}
 	
-	public void AdotarAnimal(int id) {
-
+	public void AdotarAnimal(String nome) {
+		Animal a = null;
+		String situacao = "Adotado";
+		
+		for (int i = 0; i < qtdAnimais; i++) {	
+			if(animais[i].getNome().equals(nome)) {
+				a = animais[i];
+				System.out.println(a.getSituacao());
+				a.setSituacao(situacao);
+				System.out.println("Parabéns, "+ a.getNome() + " foi " + a.getSituacao());
+			
+			}
+		}
+		if(a == null) {
+			System.out.println("Desculpe, não encontramos esse animal");
+		}
 	}
 	
 	public void VacinarAnimal() {
@@ -53,15 +67,19 @@ import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 	}
 	
 	public Animal[] ListarAnimaisDisponiveis() {
+		Animal a = null;
 		if(qtdAnimais == 0) {
 			System.out.println("Não existem animais no sistema");	
 		}
 		else {
 			for (int i = 0; i < qtdAnimais; i++) {
 				if (animais[i].getSituacao().equals("1")) {
-					System.out.println(animais[i].getNome());
+					a = animais[i];
+					System.out.println(a.getNome());
 				}
-				
+			}
+			if(a == null) {
+				System.out.println("Nenhum Animal disponível para adoção no momento");
 			}
 		}
 		return null;

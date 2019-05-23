@@ -80,8 +80,11 @@ public static void Menu() {
 				
 			}
 			
-			if (opcao == 2) {
-				
+			if (opcao == 2) { //Adotar Animal
+				resgateAmigo.ListarAnimaisDisponiveis();
+				System.out.println("Digite qual animal você deseja adotar:");
+				String nome = sc.next();
+				resgateAmigo.AdotarAnimal(nome);
 			}
 			
 			if (opcao == 3) { //Ver quantidade total de animais
