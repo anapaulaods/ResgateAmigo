@@ -11,8 +11,9 @@ import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 	private int qtdDoacoes;
 	
 	Animal animal = new Animal();
+	Voluntarios voluntario = new Voluntarios();
 	
-	//Animais
+	//ANIMAIS
 	
 	public ResgateAmigo() {
 		
@@ -32,13 +33,13 @@ import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 		qtdAnimais++;
 	}
 	
-	public void CastraAnimal() {
+	public void CastrarAnimal() {
 		
 	}
 	
 	public void AdotarAnimal(String nome) {
 		Animal a = null;
-		String situacao = "Adotado";
+		String situacao = "adotado";
 		
 		for (int i = 0; i < qtdAnimais; i++) {	
 			if(animais[i].getNome().equals(nome)) {
@@ -50,7 +51,7 @@ import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 			}
 		}
 		if(a == null) {
-			System.out.println("Desculpe, não encontramos esse animal");
+			System.out.println("Desculpe, não encontramos esse animal.");
 		}
 	}
 	
@@ -62,8 +63,24 @@ import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 		return qtdAnimais;
 	}
 	
-	public void ListarAnimaisAdotados() {
+	public boolean ListarAnimaisAdotados() {
 		
+		if(qtdAnimais == 0) {
+			return false;
+		}
+		else {
+			Animal a = null;
+			for (int i = 0; i < qtdAnimais; i++) {
+				if (animais[i].getSituacao().equals("Adotado")) {
+					a = animais[i];
+					System.out.println(i + " - " + a.getNome());
+				}
+			}
+			if(a == null) {
+				return false;
+			}
+			return true;
+		}
 	}
 	
 	public Animal[] ListarAnimaisDisponiveis() {
@@ -79,13 +96,32 @@ import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 				}
 			}
 			if(a == null) {
-				System.out.println("Nenhum Animal disponível para adoção no momento");
+				System.out.println("Nenhum animal disponível para adoção no momento");
 			}
 		}
 		return null;
 	}
 	
-	//Voluntários
+	public Animal[] ListarAnimaisEmTratamento() {
+		Animal a = null;
+		if(qtdAnimais == 0) {
+			System.out.println("Não existem animais no sistema");	
+		}
+		else {
+			for (int i = 0; i < qtdAnimais; i++) {
+				if (animais[i].getSituacao().equals("2")) {
+					a = animais[i];
+					System.out.println(a.getNome());
+				}
+			}
+			if(a == null) {
+				System.out.println("Nenhum animal em tratamento no momento");
+			}
+		}
+		return null;
+	}
+	
+	//VOLUNTÁRIOS
 	
 	public void CadastrarVoluntario(Voluntarios v) {
 		voluntarios[qtdVoluntarios] = v;
@@ -96,19 +132,67 @@ import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 		
 	}
 	
-	public void ListarVoluntariosAtivos() {
+	public Voluntarios[] ListarVoluntariosAtivos() {
+		Voluntarios v = null;
+		if(qtdVoluntarios == 0) {
+			System.out.println("Não existem voluntários cadastrados no sistema.");
+		}
+		else {
+			for(int i = 0; i < qtdVoluntarios; i++) {
+				if (voluntarios[i].getSituacao().equals("1")) {
+					v = voluntarios[i];
+					System.out.println(v.getNome() + " : "  + v.getTelefone() + " : " + v.getDisponibilidade() + " : " + v.getFuncao());
+				}
+			}
+			if (v == null) {
+				System.out.println("Não existem voluntários ativos cadastrados no sistema.");
+			}
+		}
+		return null;
 		
 	}
 	
-	public void ListarVoluntariosPausados() {
+	public Voluntarios[] ListarVoluntariosPausados() {
+		Voluntarios v = null;
+		if(qtdVoluntarios == 0) {
+			System.out.println("Não existem voluntários cadastrados no sistema.");
+		}
+		else {
+			for(int i = 0; i < qtdVoluntarios; i++) {
+				if (voluntarios[i].getSituacao().equals("2")) {
+					v = voluntarios[i];
+					System.out.println(v.getNome());
+				}
+			}
+			if (v == null) {
+				System.out.println("Não existem voluntários ativos cadastrados no sistema.");
+			}
+		}
+		return null;
 		
 	}
 	
-	public void ListarVoluntariosDesativos() {
+	public Voluntarios[] ListarVoluntariosDesativos() {
+		Voluntarios v = null;
+		if(qtdVoluntarios == 0) {
+			System.out.println("Não existem voluntários cadastrados no sistema.");
+		}
+		else {
+			for(int i = 0; i < qtdVoluntarios; i++) {
+				if (voluntarios[i].getSituacao().equals("3")) {
+					v = voluntarios[i];
+					System.out.println(v.getNome());
+				}
+			}
+			if (v == null) {
+				System.out.println("Não existem voluntários ativos cadastrados no sistema.");
+			}
+		}
+		return null;
 	
 	}
 	
-	//Doações
+	//DOAÇÕES
 	
 	public void CadastrarDoacoes(Doacoes d) {
 		doacoes[qtdDoacoes] = d;

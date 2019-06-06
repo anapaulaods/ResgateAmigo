@@ -29,9 +29,6 @@ public static void Menu() {
 
 	public static void main(String[] args) {
 		
-		//Animal animal = new Animal();
-		Voluntarios voluntarios = new Voluntarios();
-		Doacoes doacoes = new Doacoes();
 		ResgateAmigo resgateAmigo = new ResgateAmigo();
 		
 		Scanner sc = new Scanner(System.in);
@@ -43,25 +40,27 @@ public static void Menu() {
 			Menu();
 			opcao = sc.nextInt();
 			
-
-			if (opcao == 1) { //Cadastrar animal
+			//CADASTRAR ANIMAL
+			if (opcao == 1) {
+			
 				Animal animal = new Animal();
+				
 				System.out.println("Digite o nome do animal:\n");
 				String nome = sc.next();
 				
-				System.out.println("O animal é gato ou cachorro?\n");
+				System.out.println("Qual o tipo do animal? Digite a opção correspondente:/n 1 - Gato || 2 - Cachorro \n");
 				String tipo = sc.next();
 				
 				System.out.println("Qual a raça do animal?\n");
 				String raca = sc.next();
 				
-				System.out.println("Digite o número correspondente a situação do animal:\n 1 - Para adoção ou 2 - Em tratamento\n");
+				System.out.println("Digite o número correspondente para a situação do animal:\n 1 - Para adoção ou 2 - Em tratamento\n");
 				String situacao = sc.next();
 				
 				System.out.println("O animal já tomou alguma vacina? Qual(is)?\n");
 				String vacinas = sc.next();
 				
-				System.out.println("O animal é castrado?\n");
+				System.out.println("O animal é castrado?/n 1 - Sim || 2 - Não\n");
 				String castrado = sc.next();
 				
 				System.out.println("Qual foi a data de chegada do animal na ONG?\n");
@@ -80,39 +79,56 @@ public static void Menu() {
 				
 			}
 			
-			if (opcao == 2) { //Adotar Animal
+			//ADOTAR ANIMAL
+			if (opcao == 2) {
+				
 				resgateAmigo.ListarAnimaisDisponiveis();
 				System.out.println("Digite qual animal você deseja adotar:");
 				String nome = sc.next();
 				resgateAmigo.AdotarAnimal(nome);
 			}
 			
-			if (opcao == 3) { //Ver quantidade total de animais
+			//VER QUANTIDADE TOTAL DE ANIMAIS
+			if (opcao == 3) {
 				
 				System.out.println("Até o momento foram cadastrados " + resgateAmigo.QtdAnimais() + " animais no sistema.");	
 			}
 			
+			//VER ANIMAIS QUE JÁ FORAM ADOTADOS
 			if (opcao == 4) {
 				
+				if(resgateAmigo.ListarAnimaisAdotados() == true) {
+					
+				}
+				else {
+					System.out.println("Nenhum animal foi adotado no momento");
+				}
 			}
-			
-			if (opcao == 5) { //Verificar animais disponíveis para adoção
+				
+			//VERIFICAR ANIMAIS DISPONÍVEIS PARA ADOÇÃO
+			if (opcao == 5) {
 				resgateAmigo.ListarAnimaisDisponiveis();
 			}
 			
-			if (opcao == 6) {
-				
+			//VERIFICAR ANIMAIS EM TRATAMENTO
+			if (opcao == 6) { 
+				resgateAmigo.ListarAnimaisEmTratamento();	
 			}
 			
+			//CADASTRAR VACINA NO ANIMAL
 			if (opcao == 7) {
 				
 			}
 			
+			//ALTERAR SITUAÇÃO DE CASTRAÇÃO DO ANIMAL
 			if (opcao == 8) {
 				
 			}
 			
-			if (opcao == 9) { //Cadastrar um voluntário
+			//CADASTRAR UM VOLUNTÁRIO
+			if (opcao == 9) {
+				
+				Voluntarios voluntarios = new Voluntarios();
 				
 				System.out.println("Digite o nome do voluntário:\n");
 				String nome = sc.next();
@@ -133,7 +149,7 @@ public static void Menu() {
 				int funcao = sc.nextInt();
 				
 				System.out.println("Situação: 1 - Ativo / 2 - Pausado / 3 - Desativo");
-				int situacao = sc.nextInt();
+				String situacao = sc.next();
 				
 				voluntarios.setNome(nome);
 				voluntarios.setTelefone(telefone);
@@ -148,23 +164,31 @@ public static void Menu() {
 				
 			}
 			
+			//ALTERAR SITUAÇÃO DE UM VOLUNTÁRIO
 			if (opcao == 10) {
 				
+				
 			}
 			
+			//VERIFICAR VOLUNTÁRIOS ATIVOS
 			if (opcao == 11) {
-				
+				resgateAmigo.ListarVoluntariosAtivos();
 			}
 			
+			//VERIFICAR VOLUNTÁRIOS COM PARTICIPAÇÃO PAUSADA
 			if (opcao == 12) {
-				
+				resgateAmigo.ListarVoluntariosPausados();
 			}
 			
+			//VERIFICAR VOLUNTARIOS COM SITUAÇÃO CANCELADA
 			if (opcao == 13) {
-				
+				resgateAmigo.ListarVoluntariosDesativos();
 			}
 			
-			if (opcao == 14) { //Cadastrar doação
+			//CADASTRAR DOAÇÃO
+			if (opcao == 14) {
+				
+				Doacoes doacoes = new Doacoes();
 				
 				System.out.println("Doador:");
 				String nomeDoador = sc.next();
@@ -204,6 +228,7 @@ public static void Menu() {
 				System.out.println("Doação cadastrada com sucesso!");
 			}
 			
+			//VER DOACOES
 			if (opcao == 15) {
 				
 			}

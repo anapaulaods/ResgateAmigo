@@ -3,13 +3,13 @@ package ifrn.edu.diatinf.tads.poo.java.modelo;
 public class Voluntarios {
 	
 	private String nome;
-	private int idVoluntario;
+	private int cpfVoluntario;
 	private int telefone;
 	private String dataNascimento;
 	private String sexo;
 	private int disponibilidade;
 	private int funcao;
-	private int situacao;
+	private String situacao;
 	private String motivo;
 	
 	public String getNome() {
@@ -18,11 +18,11 @@ public class Voluntarios {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public int getIdVoluntario() {
-		return idVoluntario;
+	public int getCpfVoluntario() {
+		return cpfVoluntario;
 	}
-	public void setIdVoluntario(int idVoluntario) {
-		this.idVoluntario = idVoluntario;
+	public void setIdVoluntario(int cpfVoluntario) {
+		this.cpfVoluntario = cpfVoluntario;
 	}
 	public int getTelefone() {
 		return telefone;
@@ -54,10 +54,10 @@ public class Voluntarios {
 	public void setFuncao(int funcao) {
 		this.funcao = funcao;
 	}
-	public int getSituacao() {
+	public String getSituacao() {
 		return situacao;
 	}
-	public void setSituacao(int situacao) {
+	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
 	public String getMotivo() {
