@@ -1,7 +1,9 @@
 package ifrn.edu.diatinf.tads.poo.java.modelo;
 import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 
-	public class ResgateAmigo {
+import java.util.Scanner;
+
+	public class ResgateAmigo {	
 	
 	private Animal[] animais;
 	private int qtdAnimais;
@@ -37,21 +39,22 @@ import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 		
 	}
 	
-	public void AdotarAnimal(String nome) {
+	public void AdotarAnimal(int numero) {
 		Animal a = null;
-		String situacao = "adotado";
+		String situacao = "adotado(a)";
 		
-		for (int i = 0; i < qtdAnimais; i++) {	
-			if(animais[i].getNome().equals(nome)) {
-				a = animais[i];
-				System.out.println(a.getSituacao());
-				a.setSituacao(situacao);
-				System.out.println("Parabéns, "+ a.getNome() + " foi " + a.getSituacao());
-			
+		for (int i = 0; i < qtdAnimais; i++) {
+			if (animais[i].getSituacao().equals("1")) {
+				if(i == numero) {
+					a = animais[i];
+					System.out.println(a.getSituacao());
+					a.setSituacao(situacao);
+					System.out.println("Parabéns, "+ a.getNome() + " foi " + a.getSituacao());
+				}
 			}
 		}
 		if(a == null) {
-			System.out.println("Desculpe, não encontramos esse animal.");
+			System.out.println("Desculpe, não encontramos esse animal");
 		}
 	}
 	
@@ -71,7 +74,7 @@ import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 		else {
 			Animal a = null;
 			for (int i = 0; i < qtdAnimais; i++) {
-				if (animais[i].getSituacao().equals("Adotado")) {
+				if (animais[i].getSituacao().equals("adotado(a)")) {
 					a = animais[i];
 					System.out.println(i + " - " + a.getNome());
 				}
@@ -83,31 +86,33 @@ import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 		}
 	}
 	
-	public Animal[] ListarAnimaisDisponiveis() {
-		Animal a = null;
+	public boolean ListarAnimaisDisponiveis() {
+		
 		if(qtdAnimais == 0) {
-			System.out.println("Não existem animais no sistema");	
+			return false;	
 		}
 		else {
+			Animal a = null;
 			for (int i = 0; i < qtdAnimais; i++) {
 				if (animais[i].getSituacao().equals("1")) {
 					a = animais[i];
-					System.out.println(a.getNome());
+					System.out.println(i + " - " + a.getNome());
 				}
 			}
 			if(a == null) {
 				System.out.println("Nenhum animal disponível para adoção no momento");
 			}
 		}
-		return null;
+		return true;
 	}
 	
-	public Animal[] ListarAnimaisEmTratamento() {
-		Animal a = null;
+	public boolean ListarAnimaisEmTratamento() {
+		
 		if(qtdAnimais == 0) {
-			System.out.println("Não existem animais no sistema");	
+			return false;	
 		}
 		else {
+			Animal a = null;
 			for (int i = 0; i < qtdAnimais; i++) {
 				if (animais[i].getSituacao().equals("2")) {
 					a = animais[i];
@@ -118,7 +123,7 @@ import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 				System.out.println("Nenhum animal em tratamento no momento");
 			}
 		}
-		return null;
+		return true;
 	}
 	
 	//VOLUNTÁRIOS
@@ -128,68 +133,87 @@ import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 		qtdVoluntarios++;
 	}
 	
-	public void AlterarSituacaoVoluntario() {
+	public void AlterarSituacaoVoluntario(int id) {
 		
+		Scanner sc = new Scanner(System.in); 
+		Voluntarios v = null;
+		for (int i = 0; i < qtdVoluntarios; i++) {
+			if (i == id) {
+				v = voluntarios[i];
+				System.out.println("Voluntário: " + v.getNome() + "\nSituação: " + v.getSituacao());
+				System.out.println("Atualizar situação:\n1 - Ativo\n2 - Pausado\n3 - Desativo");
+				int situacao = sc.nextInt();
+				if (situacao > 3) {
+					System.out.println("Situação inválida");
+				}
+				else {
+					v.getSituacao();
+					System.out.println("Situação atualizada com sucesso");
+					
+					sc.close();
+				}
+			}
+		}
 	}
 	
-	public Voluntarios[] ListarVoluntariosAtivos() {
-		Voluntarios v = null;
-		if(qtdVoluntarios == 0) {
-			System.out.println("Não existem voluntários cadastrados no sistema.");
+	public boolean ListarVoluntariosAtivos() {
+		
+		if (qtdVoluntarios == 0) {
+			return false;
 		}
 		else {
-			for(int i = 0; i < qtdVoluntarios; i++) {
-				if (voluntarios[i].getSituacao().equals("1")) {
+			Voluntarios v = null;
+			for (int i = 0; i < qtdVoluntarios; i++) {
+				if (voluntarios[i].getSituacao() == 1) {
 					v = voluntarios[i];
-					System.out.println(v.getNome() + " : "  + v.getTelefone() + " : " + v.getDisponibilidade() + " : " + v.getFuncao());
+					System.out.println(i + " - " + v.getNome());
 				}
 			}
 			if (v == null) {
-				System.out.println("Não existem voluntários ativos cadastrados no sistema.");
+				return false;
 			}
+			return true;
 		}
-		return null;
-		
 	}
 	
-	public Voluntarios[] ListarVoluntariosPausados() {
-		Voluntarios v = null;
-		if(qtdVoluntarios == 0) {
-			System.out.println("Não existem voluntários cadastrados no sistema.");
+	public boolean ListarVoluntariosPausados() {
+		
+		if (qtdVoluntarios == 0) {
+			return false;
 		}
 		else {
-			for(int i = 0; i < qtdVoluntarios; i++) {
-				if (voluntarios[i].getSituacao().equals("2")) {
+			Voluntarios v = null;
+			for (int i = 0; i < qtdVoluntarios; i++) {
+				if (voluntarios[i].getSituacao() == 2) {
 					v = voluntarios[i];
-					System.out.println(v.getNome());
+					System.out.println(i + " - " + v.getNome());
 				}
 			}
 			if (v == null) {
-				System.out.println("Não existem voluntários ativos cadastrados no sistema.");
+				return false;
 			}
+			return true;
 		}
-		return null;
-		
 	}
 	
-	public Voluntarios[] ListarVoluntariosDesativos() {
-		Voluntarios v = null;
-		if(qtdVoluntarios == 0) {
-			System.out.println("Não existem voluntários cadastrados no sistema.");
+	public boolean ListarVoluntariosDesativos() {
+		
+		if (qtdVoluntarios == 0) {
+			return false;
 		}
 		else {
-			for(int i = 0; i < qtdVoluntarios; i++) {
-				if (voluntarios[i].getSituacao().equals("3")) {
+			Voluntarios v = null;
+			for (int i = 0; i < qtdVoluntarios; i++) {
+				if (voluntarios[i].getSituacao() == 3) {
 					v = voluntarios[i];
-					System.out.println(v.getNome());
+					System.out.println(i + " - " + v.getNome());
 				}
 			}
 			if (v == null) {
-				System.out.println("Não existem voluntários ativos cadastrados no sistema.");
+				return false;
 			}
+			return true;
 		}
-		return null;
-	
 	}
 	
 	//DOAÇÕES

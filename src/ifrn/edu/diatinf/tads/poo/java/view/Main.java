@@ -14,12 +14,12 @@ public static void Menu() {
 		System.out.println("|5| - Verificar animais disponíveis para adoção");
 		System.out.println("|6| - Verificar animais em tratamento");
 		System.out.println("|7| - Cadastrar vacina no animal");
-		System.out.println("|8| - Alterar situação de castração do animal");
+		System.out.println("|8| - Castrar um animal");
 		System.out.println("|9| - Cadastrar um voluntário");
 		System.out.println("|10| - Alterar situação de um voluntário");
 		System.out.println("|11| - Verificar voluntários ativos");
 		System.out.println("|12| - Verificar voluntários com participação pausada");
-		System.out.println("|13| - Verificar coluntários desativos");
+		System.out.println("|13| - Verificar voluntários desativos");
 		System.out.println("|14| - Cadastrar doação");
 		System.out.println("|15| - Ver doações");
 		System.out.println("|0| - Sair");
@@ -48,19 +48,21 @@ public static void Menu() {
 				System.out.println("Digite o nome do animal:\n");
 				String nome = sc.next();
 				
-				System.out.println("Qual o tipo do animal? Digite a opção correspondente:/n 1 - Gato || 2 - Cachorro \n");
+				System.out.println("Qual o tipo do animal? Digite a opção correspondente:\n 1 - Gato || 2 - Cachorro \n");
 				String tipo = sc.next();
 				
 				System.out.println("Qual a raça do animal?\n");
 				String raca = sc.next();
 				
+
+				sc = new Scanner(System.in);
 				System.out.println("Digite o número correspondente para a situação do animal:\n 1 - Para adoção ou 2 - Em tratamento\n");
 				String situacao = sc.next();
 				
-				System.out.println("O animal já tomou alguma vacina? Qual(is)?\n");
+				System.out.println("O animal já tomou alguma vacina?\n 1 - Sim || 2 - Não\n");
 				String vacinas = sc.next();
 				
-				System.out.println("O animal é castrado?/n 1 - Sim || 2 - Não\n");
+				System.out.println("O animal é castrado?\n 1 - Sim || 2 - Não\n");
 				String castrado = sc.next();
 				
 				System.out.println("Qual foi a data de chegada do animal na ONG?\n");
@@ -75,45 +77,60 @@ public static void Menu() {
 				animal.setDataChegada(dataChegada);
 				
 				resgateAmigo.CadastrarAnimal(animal);
-				System.out.println("O animal foi cadastrado com sucesso!");
+				System.out.println("ANIMAL CADASTRADO COM SUCESSO.");
 				
 			}
 			
 			//ADOTAR ANIMAL
 			if (opcao == 2) {
 				
-				resgateAmigo.ListarAnimaisDisponiveis();
-				System.out.println("Digite qual animal você deseja adotar:");
-				String nome = sc.next();
-				resgateAmigo.AdotarAnimal(nome);
+				if(resgateAmigo.ListarAnimaisDisponiveis()) {
+					System.out.println("Selecione o número do animal você deseja adotar:");
+					int numero = sc.nextInt();
+					resgateAmigo.AdotarAnimal(numero);
+				}
+				else {
+					System.out.println("Não existe animais disponíveis para adoção");
+				}
+
 			}
 			
 			//VER QUANTIDADE TOTAL DE ANIMAIS
 			if (opcao == 3) {
 				
-				System.out.println("Até o momento foram cadastrados " + resgateAmigo.QtdAnimais() + " animais no sistema.");	
+				System.out.println("Até o momento foi/foram cadastrado(s) " + resgateAmigo.QtdAnimais() + " animal(is) no sistema.");	
 			}
 			
 			//VER ANIMAIS QUE JÁ FORAM ADOTADOS
 			if (opcao == 4) {
 				
 				if(resgateAmigo.ListarAnimaisAdotados() == true) {
-					
 				}
 				else {
-					System.out.println("Nenhum animal foi adotado no momento");
+					System.out.println("Nenhum animal adotado por enquanto.");
 				}
 			}
 				
 			//VERIFICAR ANIMAIS DISPONÍVEIS PARA ADOÇÃO
 			if (opcao == 5) {
-				resgateAmigo.ListarAnimaisDisponiveis();
+				
+				if(resgateAmigo.ListarAnimaisDisponiveis() == true) {
+				}
+			
+			else {
+				System.out.println("Nenhum animal disponível para adoção no momento.");
 			}
+				}
 			
 			//VERIFICAR ANIMAIS EM TRATAMENTO
 			if (opcao == 6) { 
-				resgateAmigo.ListarAnimaisEmTratamento();	
+				
+				if(resgateAmigo.ListarAnimaisEmTratamento() == true) {
 			}
+			else {
+				System.out.println("Nenhum animal em tratamento no momento.");
+			}
+				}
 			
 			//CADASTRAR VACINA NO ANIMAL
 			if (opcao == 7) {
@@ -133,6 +150,9 @@ public static void Menu() {
 				System.out.println("Digite o nome do voluntário:\n");
 				String nome = sc.next();
 				
+				System.out.println("CPF do voluntário:");
+				String cpf = sc.next();
+				
 				System.out.println("Telefone:");
 				int telefone = sc.nextInt();
 				
@@ -142,16 +162,17 @@ public static void Menu() {
 				System.out.println("Sexo:");
 				String sexo = sc.next();
 				
-				System.out.println("Disponibilidade: 1 - Manhã / 2 - Tarde / 3 - Noite");
+				System.out.println("Disponibilidade:\n 1 - Manhã || 2 - Tarde || 3 - Noite");
 				int disponibilidade = sc.nextInt();
 				
-				System.out.println("Função: 1 - Veterinário / 2 - Motorista / 3 - Limpeza do local / 4 - Limpeza dos animais / 5 - Outro");
+				System.out.println("Função:\n 1 - Veterinário || 2 - Motorista || 3 - Limpeza do local || 4 - Limpeza dos animais || 5 - Outro");
 				int funcao = sc.nextInt();
 				
-				System.out.println("Situação: 1 - Ativo / 2 - Pausado / 3 - Desativo");
-				String situacao = sc.next();
+				System.out.println("Situação:\n 1 - Ativo || 2 - Pausado || 3 - Desativo");
+				int situacao = sc.nextInt();
 				
 				voluntarios.setNome(nome);
+				voluntarios.setIdVoluntario(cpf);
 				voluntarios.setTelefone(telefone);
 				voluntarios.setDataNascimento(dataNascimento);
 				voluntarios.setSexo(sexo);
@@ -160,7 +181,7 @@ public static void Menu() {
 				voluntarios.setSituacao(situacao);
 				
 				resgateAmigo.CadastrarVoluntario(voluntarios);
-				System.out.println("Voluntário cadastrado com sucesso!");
+				System.out.println("VOLUNTÁRIO CADASTRADO COM SUCESSO.");
 				
 			}
 			
@@ -172,17 +193,32 @@ public static void Menu() {
 			
 			//VERIFICAR VOLUNTÁRIOS ATIVOS
 			if (opcao == 11) {
-				resgateAmigo.ListarVoluntariosAtivos();
+				
+				if(resgateAmigo.ListarVoluntariosAtivos() == true) {
+			}
+			else {
+				System.out.println("Nenhum voluntário ativo no momento.");
+				}
 			}
 			
 			//VERIFICAR VOLUNTÁRIOS COM PARTICIPAÇÃO PAUSADA
 			if (opcao == 12) {
-				resgateAmigo.ListarVoluntariosPausados();
+				
+				if(resgateAmigo.ListarVoluntariosPausados() == true) {
 			}
+			else {
+				System.out.println("Nenhum voluntário com participação pausada no momento.");
+				}
+			}	
 			
 			//VERIFICAR VOLUNTARIOS COM SITUAÇÃO CANCELADA
 			if (opcao == 13) {
-				resgateAmigo.ListarVoluntariosDesativos();
+				
+				if(resgateAmigo.ListarVoluntariosDesativos() == true) {
+			}
+			else {
+				System.out.println("Nenhum voluntário com participação cancelada no momento.");
+				}
 			}
 			
 			//CADASTRAR DOAÇÃO
@@ -225,7 +261,7 @@ public static void Menu() {
 				doacoes.setDataDoacao(dataDoacao);
 				
 				resgateAmigo.CadastrarDoacoes(doacoes);
-				System.out.println("Doação cadastrada com sucesso!");
+				System.out.println("DOAÇÃO CADASTRADA COM SUCESSO.");
 			}
 			
 			//VER DOACOES
