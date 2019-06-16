@@ -4,7 +4,6 @@ public class Voluntarios {
 	
 	private String nome;
 	private int idVoluntario;
-	private String cpfVoluntario;
 	private int telefone;
 	private String dataNascimento;
 	private String sexo;
@@ -19,11 +18,11 @@ public class Voluntarios {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getCpfVoluntario() {
-		return cpfVoluntario;
+	public int getIdVoluntario() {
+		return idVoluntario;
 	}
-	public void setIdVoluntario(String cpfVoluntario) {
-		this.cpfVoluntario = cpfVoluntario;
+	public void setIdVoluntario(int idVoluntario) {
+		this.idVoluntario = idVoluntario;
 	}
 	public int getTelefone() {
 		return telefone;
@@ -67,8 +66,4 @@ public class Voluntarios {
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
 	}
-	public int getIdVoluntario() {
-		return idVoluntario;
-	}
-
 }

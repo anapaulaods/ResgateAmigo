@@ -7,8 +7,8 @@ public class Doacoes {
 	private String dataNascDoador;
 	private String telefoneDoador;
 	private String emailDoador;
-	private int tipoDoacao;
-	private String detalhesDoacao;
+	private String tipoDoacao;
+	private String doacao;
 	private int qtdDoacao;
 	private String dataDoacao;
 	
@@ -18,48 +18,56 @@ public class Doacoes {
 	public void setNomeDoador(String nomeDoador) {
 		this.nomeDoador = nomeDoador;
 	}
+	
 	public String getCpfDoador() {
 		return cpfDoador;
 	}
 	public void setCpfDoador(String cpfDoador) {
 		this.cpfDoador = cpfDoador;
 	}
+	
 	public String getDataNascDoador() {
 		return dataNascDoador;
 	}
 	public void setDataNascDoador(String dataNascDoador) {
 		this.dataNascDoador = dataNascDoador;
 	}
+	
 	public String getTelefoneDoador() {
 		return telefoneDoador;
 	}
 	public void setTelefoneDoador(String telefoneDoador) {
 		this.telefoneDoador = telefoneDoador;
 	}
+	
 	public String getEmailDoador() {
 		return emailDoador;
 	}
 	public void setEmailDoador(String emailDoador) {
 		this.emailDoador = emailDoador;
 	}
-	public int getTipoDoacao() {
+	
+	public String getTipoDoacao() {
 		return tipoDoacao;
 	}
-	public void setTipoDoacao(int tipoDoacao) {
+	public void setTipoDoacao(String tipoDoacao) {
 		this.tipoDoacao = tipoDoacao;
 	}
-	public String getDetalhesDoacao() {
-		return detalhesDoacao;
+	
+	public String getDoacao() {
+		return doacao;
 	}
-	public void setDetalhesDoacao(String detalhesDoacao) {
-		this.detalhesDoacao = detalhesDoacao;
+	public void setDoacao(String doacao) {
+		this.doacao = doacao;
 	}
+	
 	public int getQtdDoacao() {
 		return qtdDoacao;
 	}
 	public void setQtdDoacao(int qtdDoacao) {
 		this.qtdDoacao = qtdDoacao;
 	}
+	
 	public String getDataDoacao() {
 		return dataDoacao;
 	}

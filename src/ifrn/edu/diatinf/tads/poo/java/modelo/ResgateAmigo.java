@@ -1,10 +1,9 @@
 package ifrn.edu.diatinf.tads.poo.java.modelo;
-import ifrn.edu.diatinf.tads.poo.java.modelo.*;
-
 import java.util.Scanner;
 
-	public class ResgateAmigo {	
-	
+
+	public class ResgateAmigo {
+
 	private Animal[] animais;
 	private int qtdAnimais;
 	private Voluntarios[] voluntarios;
@@ -12,10 +11,7 @@ import java.util.Scanner;
 	private Doacoes[] doacoes;
 	private int qtdDoacoes;
 	
-	Animal animal = new Animal();
-	Voluntarios voluntario = new Voluntarios();
-	
-	//ANIMAIS
+	Scanner sc = new Scanner(System.in);
 	
 	public ResgateAmigo() {
 		
@@ -30,18 +26,32 @@ import java.util.Scanner;
 		
 	}
 	
+	// CLASSE ANIMAL
 	public void CadastrarAnimal(Animal a) {
 		animais[qtdAnimais] = a;
 		qtdAnimais++;
 	}
 	
-	public void CastrarAnimal() {
-		
+	public void CastrarAnimal(int numero) {
+		Animal a = null;
+		int castrado = 1;
+		for (int i = 0; i < qtdAnimais; i++) {
+			if (i == numero) {
+				a = animais[i];
+				if (a.getCastrado() == 1) {
+					System.out.println("Esse Animal já foi castrado");
+				}
+				if (a.getCastrado() == 2) {
+					a.setCastrado(castrado);
+					System.out.println("Animal " + a.getNome() + " foi castrado com Sucesso");
+				}
+			}
+		}
 	}
-	
+		
 	public void AdotarAnimal(int numero) {
 		Animal a = null;
-		String situacao = "adotado(a)";
+		String situacao = "Adotado";
 		
 		for (int i = 0; i < qtdAnimais; i++) {
 			if (animais[i].getSituacao().equals("1")) {
@@ -58,23 +68,88 @@ import java.util.Scanner;
 		}
 	}
 	
-	public void VacinarAnimal() {
+	public void VacinarAnimal(int numero) {
+		Animal a = null;
+		int vacina = 1;
 		
+		for (int i = 0; i < qtdAnimais; i++) {
+			if (i == numero) {
+				a = animais[i];
+				if (a.getVacina() == 1) {
+					System.out.println("Esse Animal já foi vacinado");
+				}
+				if (a.getVacina() == 2) {
+					a.setVacina(vacina);
+					System.out.println("Animal " + a.getNome() + " foi vacinado com Sucesso");
+				}
+			}
+		}
+		
+		if (a == null) {
+			System.out.println("Desculpe, não encontramos esse animal");
+		}
 	}
+	
 	
 	public int QtdAnimais() {
 		return qtdAnimais;
 	}
 	
+	// LISTAR ANIMAIS
+	public boolean ListarAnimaisParaCastrar() {
+		if (qtdAnimais == 0) {
+			return false;
+		}
+		else {
+			Animal a = null;
+			for (int i = 0; i < qtdAnimais; i++) {
+				if (animais[i].getCastrado() == 1) {
+					a = animais[i];
+					System.out.println(i + " - " + a.getNome() + " está castrado");
+				}
+				if (animais[i].getCastrado() == 2) {
+					a = animais[i];
+					System.out.println(i + " - " + a.getNome() + " não foi castrado");
+				}
+			}
+			if (a == null) {
+				return false;
+			}
+			return true;
+		}
+	}
+	
+	public boolean ListarAnimaisParaVacina() {
+		if (qtdAnimais == 0) {
+			return false;
+		}
+		else {
+			Animal a = null;
+			for (int i = 0; i < qtdAnimais; i++) {
+				if (animais[i].getVacina() == 1) {
+					a = animais[i];
+					System.out.println(i + " - " + a.getNome() + " está vacinado");
+				}
+				if (animais[i].getVacina() == 2) {
+					a = animais[i];
+					System.out.println(i + " - " + a.getNome() + " não foi vacinado");
+				}
+			}
+			if (a == null) {
+				return false;
+			}
+			return true;
+		}
+	}
+	
 	public boolean ListarAnimaisAdotados() {
-		
 		if(qtdAnimais == 0) {
 			return false;
 		}
 		else {
 			Animal a = null;
 			for (int i = 0; i < qtdAnimais; i++) {
-				if (animais[i].getSituacao().equals("adotado(a)")) {
+				if (animais[i].getSituacao().equals("Adotado")) {
 					a = animais[i];
 					System.out.println(i + " - " + a.getNome());
 				}
@@ -89,8 +164,9 @@ import java.util.Scanner;
 	public boolean ListarAnimaisDisponiveis() {
 		
 		if(qtdAnimais == 0) {
-			return false;	
+			return false;
 		}
+		
 		else {
 			Animal a = null;
 			for (int i = 0; i < qtdAnimais; i++) {
@@ -99,65 +175,76 @@ import java.util.Scanner;
 					System.out.println(i + " - " + a.getNome());
 				}
 			}
+			
 			if(a == null) {
-				System.out.println("Nenhum animal disponível para adoção no momento");
+				return false;
 			}
+			
+			return true;
 		}
-		return true;
 	}
 	
-	public boolean ListarAnimaisEmTratamento() {
-		
+	public boolean ListarAnimaisTratamento() {
 		if(qtdAnimais == 0) {
-			return false;	
+			return false;
 		}
 		else {
 			Animal a = null;
 			for (int i = 0; i < qtdAnimais; i++) {
 				if (animais[i].getSituacao().equals("2")) {
 					a = animais[i];
-					System.out.println(a.getNome());
+					System.out.println(i + " - " + a.getNome());
 				}
 			}
-			if(a == null) {
-				System.out.println("Nenhum animal em tratamento no momento");
+			if (a == null) {
+				return false;
 			}
+			return true;
 		}
-		return true;
 	}
 	
-	//VOLUNTÁRIOS
 	
+	// CLASSE VOLUNTÁRIOS
 	public void CadastrarVoluntario(Voluntarios v) {
 		voluntarios[qtdVoluntarios] = v;
 		qtdVoluntarios++;
 	}
 	
 	public void AlterarSituacaoVoluntario(int id) {
-		
-		Scanner sc = new Scanner(System.in); 
 		Voluntarios v = null;
 		for (int i = 0; i < qtdVoluntarios; i++) {
 			if (i == id) {
 				v = voluntarios[i];
 				System.out.println("Voluntário: " + v.getNome() + "\nSituação: " + v.getSituacao());
-				System.out.println("Atualizar situação:\n1 - Ativo\n2 - Pausado\n3 - Desativo");
+				System.out.println("Atualizar Situação:\n1 - Ativo\n2 - Pausado\n3 - Desativo");
 				int situacao = sc.nextInt();
 				if (situacao > 3) {
-					System.out.println("Situação inválida");
+					System.out.println("Situação Inválida");
 				}
 				else {
-					v.getSituacao();
-					System.out.println("Situação atualizada com sucesso");
-					
-					sc.close();
+					v.setSituacao(situacao);
+					System.out.println("Situação Atualizada com Sucesso");
 				}
 			}
 		}
 	}
 	
+	// LISTAR VOLUNTÁRIOS
+	public boolean ListarTodosVoluntarios() {
+		if (qtdVoluntarios == 0) {
+			return false;
+		}
+		else {
+			Voluntarios v = null;
+			for (int i = 0; i < qtdVoluntarios; i++) {
+				v = voluntarios[i];
+				System.out.println(i + " - " + v.getNome());
+			}
+			return true;
+		}
+	}
+	
 	public boolean ListarVoluntariosAtivos() {
-		
 		if (qtdVoluntarios == 0) {
 			return false;
 		}
@@ -177,7 +264,6 @@ import java.util.Scanner;
 	}
 	
 	public boolean ListarVoluntariosPausados() {
-		
 		if (qtdVoluntarios == 0) {
 			return false;
 		}
@@ -197,7 +283,6 @@ import java.util.Scanner;
 	}
 	
 	public boolean ListarVoluntariosDesativos() {
-		
 		if (qtdVoluntarios == 0) {
 			return false;
 		}
@@ -216,15 +301,40 @@ import java.util.Scanner;
 		}
 	}
 	
-	//DOAÇÕES
 	
+	// CLASSE DOAÇÕES
 	public void CadastrarDoacoes(Doacoes d) {
 		doacoes[qtdDoacoes] = d;
 		qtdDoacoes++;
 	}
 	
-	public void ListarDoacoes() {
-		
+	// LISTAR DOAÇÕES
+	public String ListarDoacoes() {
+		if (qtdDoacoes == 0) {
+			return null;
+		}
+		else {
+			Doacoes d = null;
+			StringBuilder sb = new StringBuilder();
+
+			for (int i = 0; i < qtdDoacoes; i++) {
+				d = doacoes[i];
+				
+				sb.append("Nome: " + d.getNomeDoador());
+				sb.append("\n");
+				sb.append("CPF: "+ d.getCpfDoador());
+				sb.append("\n");
+				sb.append("Tipo da doação: "+ d.getTipoDoacao());
+				sb.append("\n");
+				sb.append("Doação: " + d.getDoacao());
+				sb.append("\n");
+				sb.append("Quantidade: " + d.getQtdDoacao());
+				sb.append("\n");
+				sb.append("Data da doação: " + d.getDataDoacao());
+				sb.append("\n");
+			}
+			return sb.toString();
+		}
 	}
 
 }

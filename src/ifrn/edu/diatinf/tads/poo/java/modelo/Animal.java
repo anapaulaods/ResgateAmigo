@@ -7,8 +7,8 @@ public class Animal {
 	private String tipo;
 	private String raca;
 	private String situacao;
-	private String vacinas;
-	private String castrado;
+	private int vacina;
+	private int castrado;
 	private String dataChegada;
 	private String dataAdocao;
 	
@@ -52,19 +52,19 @@ public class Animal {
 		this.situacao = situacao;
 	}
 
-	public String getVacinas() {
-		return vacinas;
+	public int getVacina() {
+		return vacina;
 	}
 
-	public void setVacinas(String vacinas) {
-		this.vacinas = vacinas;
+	public void setVacina(int vacina) {
+		this.vacina = vacina;
 	}
 
-	public String getCastrado() {
+	public int getCastrado() {
 		return castrado;
 	}
 
-	public void setCastrado(String castrado) {
+	public void setCastrado(int castrado) {
 		this.castrado = castrado;
 	}
 
@@ -83,8 +83,4 @@ public class Animal {
 	public void setDataAdocao(String dataAdocao) {
 		this.dataAdocao = dataAdocao;
 	}
-
-		
-	
-
 }
