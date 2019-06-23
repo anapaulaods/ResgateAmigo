@@ -6,7 +6,7 @@ public class Voluntarios {
 	
 	private String nome;
 	private int idVoluntario;
-	private int telefone;
+	private String telefone;
 	private Date dataNascimento;
 	private String sexo;
 	private int disponibilidade;
@@ -28,10 +28,10 @@ public class Voluntarios {
 		this.idVoluntario = idVoluntario;
 	}
 	
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 	

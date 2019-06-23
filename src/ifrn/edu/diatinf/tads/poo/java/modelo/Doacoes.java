@@ -6,7 +6,7 @@ public class Doacoes {
 	
 	private String nomeDoador;
 	private String cpfDoador;
-	private String dataNascDoador;
+	private Date dataNascDoador;
 	private String telefoneDoador;
 	private String emailDoador;
 	private String tipoDoacao;
@@ -29,9 +29,9 @@ public class Doacoes {
 	}
 	
 	public String getDataNascDoador() {
-		return dataNascDoador;
+		return this.dataNascDoador.toString();
 	}
-	public void setDataNascDoador(String dataNascDoador) {
+	public void setDataNascDoador(Date dataNascDoador) {
 		this.dataNascDoador = dataNascDoador;
 	}
 	

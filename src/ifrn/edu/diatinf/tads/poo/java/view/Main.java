@@ -70,7 +70,7 @@ public static void MenuDoacao() {
 		
 		// VOLUNTÁRIO
 		v.setNome("Plácido");
-		v.setTelefone(998673234);
+		v.setTelefone("998673234");
 	    
 		DateFormat f1 = new SimpleDateFormat("dd/MM/yyyy");
 		Date datanasc;
@@ -101,14 +101,16 @@ public static void MenuDoacao() {
 			// CADASTRAR ANIMAL NO SISTEMA
 			if (opcao == 1) { 
 				Animal animal = new Animal();
+				Scanner scLine = new Scanner(System.in);
+				
 				System.out.println("Digite o nome do animal:\n");
-				String nome = sc.next();
+				String nome = scLine.nextLine();
 				
 				System.out.println("O animal é gato ou cachorro?\n");
-				String tipo = sc.next();
+				String tipo = scLine.nextLine();
 				
 				System.out.println("Qual a raça do animal?\n");
-				String raca = sc.next();
+				String raca = scLine.nextLine();
 				
 				System.out.println("Digite o número correspondente a situação do animal:\n1 - Para adoção\n2 - Em tratamento");
 				String situacao = sc.next();
@@ -121,7 +123,7 @@ public static void MenuDoacao() {
 				
 				try {
 					System.out.println("Qual foi a data de chegada do animal na ONG?\n");
-					String dataChegada = sc.next();
+					String dataChegada = scLine.nextLine();
 					DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 					Date dt = df.parse(dataChegada);
 					animal.setDataChegada(dt);
@@ -219,15 +221,17 @@ public static void MenuDoacao() {
 			// CADASTRAR UM VOLUNTÁRIO
 			if (opcao == 9) {
 				Voluntarios voluntarios = new Voluntarios();
+				Scanner scLine = new Scanner(System.in);
+				
 				System.out.println("Digite o nome do voluntário:\n");
-				String nome = sc.next();
+				String nome = scLine.nextLine();
 				
 				System.out.println("Telefone:");
-				int telefone = sc.nextInt();
+				String telefone = scLine.nextLine();
 				
 				try {
 					System.out.println("Data de nascimento: ");
-					String data = sc.next();
+					String data = scLine.nextLine();
 					DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 					Date dt = df.parse(data);
 					System.out.println(dt);
@@ -307,21 +311,30 @@ public static void MenuDoacao() {
 			if (opcao == 14) {
 				
 				Doacoes doacoes = new Doacoes();
+				Scanner scLine = new Scanner(System.in);
 				
 				System.out.println("Doador:");
-				String nomeDoador = sc.next();
+				String nomeDoador = scLine.nextLine();
 				
 				System.out.println("CPF:");
-				String cpfDoador = sc.next();
+				String cpfDoador = scLine.nextLine();
 				
-				System.out.println("Data Nascimento:");
-				String dataNascDoador = sc.next();
+				try {
+					System.out.println("Data Nascimento:");
+					String dataNascDoador = scLine.nextLine();
+					DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+					Date dt = df.parse(dataNascDoador);
+					doacoes.setDataNascDoador(dt);
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
 				
 				System.out.println("Telefone:");
-				String telefoneDoador = sc.next();
+				String telefoneDoador = scLine.nextLine();
 				
 				System.out.println("Email:");
-				String emailDoador = sc.next();
+				String emailDoador = scLine.nextLine();
 				
 				System.out.println("Tipo de doação:\n1 - Dinheiro\n2 - Material de limpeza\n3 - Itens para os animais\n4 - Itens para a ONG"
 						+ "\n5 - Ração para gato\n6 - Ração para cachorro\n7 - Remédio\n8 - Vacina\n");
@@ -355,7 +368,7 @@ public static void MenuDoacao() {
 					
 					if (op == 6) {
 						System.out.println("Digite o valor: ");
-						String valor = sc.next();
+						String valor = scLine.nextLine();
 						doacoes.setDoacao(valor);
 					}
 					
@@ -366,7 +379,7 @@ public static void MenuDoacao() {
 				case 2: 
 					System.out.println("Material de Limpeza:");
 					System.out.println("Digite qual material de limpeza você irá doar");
-					String material = sc.next();
+					String material = scLine.nextLine();
 					System.out.println("Digite a quantidade");
 					int qtdMaterial = sc.nextInt();
 					
@@ -378,7 +391,7 @@ public static void MenuDoacao() {
 				case 3: 
 					System.out.println("Intens para animais:");
 					System.out.println("Digite qual item você deseja doar");
-					String itemA = sc.next();
+					String itemA = scLine.nextLine();
 					System.out.println("Digite a quantidade");
 					int qtdItemA = sc.nextInt();
 					
@@ -390,7 +403,7 @@ public static void MenuDoacao() {
 				case 4: 
 					System.out.println("Intens para a ONG");
 					System.out.println("Digite qual item você doar");
-					String itemOng = sc.next();
+					String itemOng = scLine.nextLine();
 					System.out.println("Digite a quantidade:");
 					int qtdItemOng = sc.nextInt();
 					
@@ -422,7 +435,7 @@ public static void MenuDoacao() {
 				case 7: 
 					System.out.println("Remédio");
 					System.out.println("Digite o remédio irá doar");
-					String remedio = sc.next();
+					String remedio = scLine.nextLine();
 					System.out.println("Digite a quantidade");
 					int qtdRemedio = sc.nextInt();
 					
@@ -434,7 +447,7 @@ public static void MenuDoacao() {
 				case 8: 
 					System.out.println("Vacina");
 					System.out.println("Digite a vacina que irá doar");
-					String vacina = sc.next();
+					String vacina = scLine.nextLine();
 					System.out.println("Digite a quantidade");
 					int qtdVacina = sc.nextInt();
 					
@@ -448,7 +461,7 @@ public static void MenuDoacao() {
 				
 				try {
 					System.out.println("Data dessa doação:");
-					String dataDoacao = sc.next();
+					String dataDoacao = scLine.nextLine();
 					DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 					Date dt = df.parse(dataDoacao);
 					doacoes.setDataDoacao(dt);
@@ -459,7 +472,6 @@ public static void MenuDoacao() {
 
 				doacoes.setNomeDoador(nomeDoador);
 				doacoes.setCpfDoador(cpfDoador);
-				doacoes.setDataNascDoador(dataNascDoador);
 				doacoes.setTelefoneDoador(telefoneDoador);
 				doacoes.setEmailDoador(emailDoador);
 				
