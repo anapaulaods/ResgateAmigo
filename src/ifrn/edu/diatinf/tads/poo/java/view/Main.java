@@ -52,7 +52,6 @@ public static void MenuDoacao() {
 		a.setTipo("cachorro");
 		a.setRaca("vira-lata");
 		a.setSituacao("1");
-		a.setVacina(2);
 		a.setCastrado(2);
 		
 		DateFormat f = new SimpleDateFormat("dd/MM/yyyy");
@@ -115,9 +114,6 @@ public static void MenuDoacao() {
 				System.out.println("Digite o número correspondente a situação do animal:\n1 - Para adoção\n2 - Em tratamento");
 				String situacao = sc.next();
 				
-				System.out.println("O animal já tomou alguma vacina?\n1 - Sim\n2 - Não");
-				int vacina = sc.nextInt();
-				
 				System.out.println("O animal é castrado?\n1 - Sim\n2 - Não");
 				int castrado = sc.nextInt();
 				
@@ -132,11 +128,9 @@ public static void MenuDoacao() {
 					e.printStackTrace();
 				}
 				
-				
 				animal.setNome(nome);
 				animal.setTipo(tipo);
 				animal.setRaca(raca);
-				animal.setVacina(vacina);
 				animal.setSituacao(situacao);
 				animal.setCastrado(castrado);
 				
@@ -191,18 +185,6 @@ public static void MenuDoacao() {
 				}
 				else {
 					System.out.println("Nenhum Animal em tratamento");
-				}
-			}
-			
-			// CADASTRAR VACINA NO ANIMAL
-			if (opcao == 7) {
-				if (resgateAmigo.ListarAnimaisParaVacina() == true) {
-					System.out.println("Digite o número do animal para vacinar");
-					int numero = sc.nextInt();
-					resgateAmigo.VacinarAnimal(numero);
-				}
-				else {
-					System.out.println("Não existe animais disponíveis para vacinar");
 				}
 			}
 			

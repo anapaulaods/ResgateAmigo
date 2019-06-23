@@ -94,30 +94,7 @@ import java.util.Scanner;
 			System.out.println("Desculpe, não encontramos esse animal");
 		}
 	}
-	
-	public void VacinarAnimal(int numero) {
-		Animal a = null;
-		int vacina = 1;
 		
-		for (int i = 0; i < qtdAnimais; i++) {
-			if (i == numero) {
-				a = animais[i];
-				if (a.getVacina() == 1) {
-					System.out.println("Esse Animaljá foi vacinado");
-				}
-				if (a.getVacina() == 2) {
-					a.setVacina(vacina);
-					System.out.println("Animal " + a.getNome() + " foi vacinado com Sucesso");
-				}
-			}
-		}
-		
-		if (a == null) {
-			System.out.println("Desculpe, não encontramos esse animal");
-		}
-	}
-	
-	
 	public int QtdAnimais() {
 		return qtdAnimais;
 	}
@@ -137,29 +114,6 @@ import java.util.Scanner;
 				if (animais[i].getCastrado() == 2) {
 					a = animais[i];
 					System.out.println(i + " - " + a.getNome() + " não foi castrado");
-				}
-			}
-			if (a == null) {
-				return false;
-			}
-			return true;
-		}
-	}
-	
-	public boolean ListarAnimaisParaVacina() {
-		if (qtdAnimais == 0) {
-			return false;
-		}
-		else {
-			Animal a = null;
-			for (int i = 0; i < qtdAnimais; i++) {
-				if (animais[i].getVacina() == 1) {
-					a = animais[i];
-					System.out.println(i + " - " + a.getNome() + " está vacinado");
-				}
-				if (animais[i].getVacina() == 2) {
-					a = animais[i];
-					System.out.println(i + " - " + a.getNome() + " não foi vacinado");
 				}
 			}
 			if (a == null) {

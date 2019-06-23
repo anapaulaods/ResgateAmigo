@@ -9,7 +9,6 @@ public class Animal {
 	private String tipo;
 	private String raca;
 	private String situacao;
-	private int vacina;
 	private int castrado;
 	private Date dataChegada;
 	private Date dataAdocao;
@@ -52,14 +51,6 @@ public class Animal {
 
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
-	}
-
-	public int getVacina() {
-		return vacina;
-	}
-
-	public void setVacina(int vacina) {
-		this.vacina = vacina;
 	}
 
 	public int getCastrado() {
