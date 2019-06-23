@@ -1,5 +1,7 @@
 package ifrn.edu.diatinf.tads.poo.java.modelo;
 
+import java.util.Date;
+
 public class Animal {
 	
 	private int id;
@@ -9,8 +11,8 @@ public class Animal {
 	private String situacao;
 	private int vacina;
 	private int castrado;
-	private String dataChegada;
-	private String dataAdocao;
+	private Date dataChegada;
+	private Date dataAdocao;
 	
 	public int getId() {
 		return id;
@@ -69,18 +71,18 @@ public class Animal {
 	}
 
 	public String getDataChegada() {
-		return dataChegada;
+		return this.dataChegada.toString();
 	}
 
-	public void setDataChegada(String dataChegada) {
+	public void setDataChegada(Date dataChegada) {
 		this.dataChegada = dataChegada;
 	}
 
 	public String getDataAdocao() {
-		return dataAdocao;
+		return this.dataAdocao.toString();
 	}
 
-	public void setDataAdocao(String dataAdocao) {
+	public void setDataAdocao(Date dataAdocao) {
 		this.dataAdocao = dataAdocao;
 	}
 }

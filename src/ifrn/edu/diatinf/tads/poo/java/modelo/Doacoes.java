@@ -1,5 +1,7 @@
 package ifrn.edu.diatinf.tads.poo.java.modelo;
 
+import java.util.Date;
+
 public class Doacoes {
 	
 	private String nomeDoador;
@@ -10,7 +12,7 @@ public class Doacoes {
 	private String tipoDoacao;
 	private String doacao;
 	private int qtdDoacao;
-	private String dataDoacao;
+	private Date dataDoacao;
 	
 	public String getNomeDoador() {
 		return nomeDoador;
@@ -69,9 +71,9 @@ public class Doacoes {
 	}
 	
 	public String getDataDoacao() {
-		return dataDoacao;
+		return this.dataDoacao.toString();
 	}
-	public void setDataDoacao(String dataDoacao) {
+	public void setDataDoacao(Date dataDoacao) {
 		this.dataDoacao = dataDoacao;
 	}
 }

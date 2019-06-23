@@ -1,11 +1,13 @@
 package ifrn.edu.diatinf.tads.poo.java.modelo;
 
+import java.util.Date;
+
 public class Voluntarios {
 	
 	private String nome;
 	private int idVoluntario;
 	private int telefone;
-	private String dataNascimento;
+	private Date dataNascimento;
 	private String sexo;
 	private int disponibilidade;
 	private int funcao;
@@ -18,24 +20,28 @@ public class Voluntarios {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
 	public int getIdVoluntario() {
 		return idVoluntario;
 	}
 	public void setIdVoluntario(int idVoluntario) {
 		this.idVoluntario = idVoluntario;
 	}
+	
 	public int getTelefone() {
 		return telefone;
 	}
 	public void setTelefone(int telefone) {
 		this.telefone = telefone;
 	}
+	
+	public void setDataNascimento(Date data) {
+		this.dataNascimento = data;
+	}
 	public String getDataNascimento() {
-		return dataNascimento;
+		return this.dataNascimento.toString();
 	}
-	public void setDataNascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
+	
 	public String getSexo() {
 		return sexo;
 	}

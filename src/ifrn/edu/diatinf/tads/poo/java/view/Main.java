@@ -1,6 +1,10 @@
 package ifrn.edu.diatinf.tads.poo.java.view;
 import ifrn.edu.diatinf.tads.poo.java.modelo.*;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -11,23 +15,23 @@ public static void Menu() {
 	System.out.println("|2| - Adotar animal");
 	System.out.println("|3| - Ver quantidade total de animais");
 	System.out.println("|4| - Verificar animais que foram adotados");
-	System.out.println("|5| - Verificar animais disponÌveis para adoÁ„o");
+	System.out.println("|5| - Verificar animais dispon√≠veis para ado√ß√£o");
 	System.out.println("|6| - Verificar animais em tratamento");
 	System.out.println("|7| - Cadastrar vacina no animal");
 	System.out.println("|8| - Castrar animal");
-	System.out.println("|9| - Cadastrar um volunt·rio");
-	System.out.println("|10| - Alterar situaÁ„o de um volunt·rio");
-	System.out.println("|11| - Verificar volunt·rios ativos");
-	System.out.println("|12| - Verificar volunt·rios com participaÁ„o pausada");
-	System.out.println("|13| - Verificar volunt·rios desativos");
-	System.out.println("|14| - Cadastrar doaÁ„o");
-	System.out.println("|15| - Ver doaÁıes");
+	System.out.println("|9| - Cadastrar um volunt√°rio");
+	System.out.println("|10| - Alterar situa√ß√£o de um volunt√°rio");
+	System.out.println("|11| - Verificar volunt√°rios ativos");
+	System.out.println("|12| - Verificar volunt√°rios com participa√ß√£o pausada");
+	System.out.println("|13| - Verificar volunt√°rios desativos");
+	System.out.println("|14| - Cadastrar doa√ß√£o");
+	System.out.println("|15| - Ver doa√ß√µes");
 	System.out.println("|0| - Sair");
-	System.out.print("\nDigite a opÁ„o escolhida:\n ");
+	System.out.print("\nDigite a op√ß√£o escolhida:\n ");
 }
 
 public static void MenuDoacao() {
-	System.out.println("\n------Menu DoaÁ„o ------");
+	System.out.println("\n------Menu doa√ß√£o ------");
 	System.out.println("\n|1| - R$ 2,00");
 	System.out.println("\n|2| - R$ 5,00");
 	System.out.println("\n|3| - R$ 10,00");
@@ -43,19 +47,41 @@ public static void MenuDoacao() {
 		Doacoes d = new Doacoes();
 		ResgateAmigo resgateAmigo = new ResgateAmigo();
 		
+		// ANIMAL
 		a.setNome("Lulu");
 		a.setTipo("cachorro");
 		a.setRaca("vira-lata");
 		a.setSituacao("1");
 		a.setVacina(2);
 		a.setCastrado(2);
-		a.setDataChegada("05/06/2019");
+		
+		DateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+		Date datachegada;
+		try {
+			datachegada = f.parse("18/06/2019");
+			a.setDataChegada(datachegada);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		
 		resgateAmigo.CadastrarAnimal(a);
 		
-		v.setNome("Pl·cido");
+		// VOLUNT√ÅRIO
+		v.setNome("Pl√°cido");
 		v.setTelefone(998673234);
-		v.setDataNascimento("10/03/1987");
+	    
+		DateFormat f1 = new SimpleDateFormat("dd/MM/yyyy");
+		Date datanasc;
+		try {
+			datanasc = f1.parse("10/08/1997");
+			v.setDataNascimento(datanasc);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		v.setSexo("Masculino");
 		v.setDisponibilidade(2);
 		v.setFuncao(2);
@@ -78,23 +104,32 @@ public static void MenuDoacao() {
 				System.out.println("Digite o nome do animal:\n");
 				String nome = sc.next();
 				
-				System.out.println("O animal È gato ou cachorro?\n");
+				System.out.println("O animal √© gato ou cachorro?\n");
 				String tipo = sc.next();
 				
-				System.out.println("Qual a raÁa do animal?\n");
+				System.out.println("Qual a ra√ßa do animal?\n");
 				String raca = sc.next();
 				
-				System.out.println("Digite o n˙mero correspondente a situaÁ„o do animal:\n1 - Para adoÁ„o\n2 - Em tratamento");
+				System.out.println("Digite o n√∫mero correspondente a situa√ß√£o do animal:\n1 - Para ado√ß√£o\n2 - Em tratamento");
 				String situacao = sc.next();
 				
-				System.out.println("O animal j· tomou alguma vacina?\n1 - Sim\n2 - N„o");
+				System.out.println("O animal j√° tomou alguma vacina?\n1 - Sim\n2 - N√£o");
 				int vacina = sc.nextInt();
 				
-				System.out.println("O animal È castrado?\n1 - Sim\n2 - N„o");
+				System.out.println("O animal √© castrado?\n1 - Sim\n2 - N√£o");
 				int castrado = sc.nextInt();
 				
-				System.out.println("Qual foi a data de chegada do animal na ONG?\n");
-				String dataChegada = sc.next();
+				try {
+					System.out.println("Qual foi a data de chegada do animal na ONG?\n");
+					String dataChegada = sc.next();
+					DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+					Date dt = df.parse(dataChegada);
+					animal.setDataChegada(dt);
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+				
 				
 				animal.setNome(nome);
 				animal.setTipo(tipo);
@@ -102,7 +137,6 @@ public static void MenuDoacao() {
 				animal.setVacina(vacina);
 				animal.setSituacao(situacao);
 				animal.setCastrado(castrado);
-				animal.setDataChegada(dataChegada);
 				
 				resgateAmigo.CadastrarAnimal(animal);
 				System.out.println("O animal foi cadastrado com sucesso!");
@@ -112,12 +146,12 @@ public static void MenuDoacao() {
 			// ADOTAR ANIMAL
 			if (opcao == 2) { 
 				if(resgateAmigo.ListarAnimaisDisponiveis()) {
-					System.out.println("Selecione o n˙mero do animal vocÍ deseja adotar:");
+					System.out.println("Selecione o n√∫mero do animal voc√™ deseja adotar:");
 					int numero = sc.nextInt();
 					resgateAmigo.AdotarAnimal(numero);
 				}
 				else {
-					System.out.println("N„o existe animais disponÌveis para AdoÁ„o");
+					System.out.println("N√£o existe animais dispon√≠veis para ado√ß√£o");
 				}
 
 			}
@@ -125,7 +159,7 @@ public static void MenuDoacao() {
 			// VER QUANTIDADE TOTAL DE ANIMAIS
 			if (opcao == 3) {
 				
-				System.out.println("AtÈ o momento foram cadastrados " + resgateAmigo.QtdAnimais() + " animais no sistema.");	
+				System.out.println("At√© o momento foram cadastrados " + resgateAmigo.QtdAnimais() + " animais no sistema.");	
 			}
 			
 			// VERIFICAR ANIMAIS QUE FORAM ADOTADOS
@@ -138,13 +172,13 @@ public static void MenuDoacao() {
 				}
 			}
 			
-			// VERIFICAR ANIMAIS DISPONÕVEIS PARA ADO«√O
+			// VERIFICAR ANIMAIS DISPON√çVEIS PARA ADO√á√ÉO
 			if (opcao == 5) {
 				if(resgateAmigo.ListarAnimaisDisponiveis() == true) {
 					
 				}
 				else {
-					System.out.println("Nenhum Animal disponÌvel para adoÁ„o");
+					System.out.println("Nenhum Animal dispon√≠vel para ado√ß√£o");
 				}
 			}
 			
@@ -161,12 +195,12 @@ public static void MenuDoacao() {
 			// CADASTRAR VACINA NO ANIMAL
 			if (opcao == 7) {
 				if (resgateAmigo.ListarAnimaisParaVacina() == true) {
-					System.out.println("Digite o n˙mero do animal para vacinar");
+					System.out.println("Digite o n√∫mero do animal para vacinar");
 					int numero = sc.nextInt();
 					resgateAmigo.VacinarAnimal(numero);
 				}
 				else {
-					System.out.println("N„o existe animais disponÌveis para vacinar");
+					System.out.println("N√£o existe animais dispon√≠veis para vacinar");
 				}
 			}
 			
@@ -178,48 +212,56 @@ public static void MenuDoacao() {
 					resgateAmigo.CastrarAnimal(numero);
 				}
 				else {
-					System.out.println("N„o existe animais disponÌveis para castrar");
+					System.out.println("N√£o existe animais dispon√≠veis para castrar");
 				}
 			}
 			
-			// CADASTRAR UM VOLUNT¡RIO
+			// CADASTRAR UM VOLUNT√ÅRIO
 			if (opcao == 9) {
 				Voluntarios voluntarios = new Voluntarios();
-				System.out.println("Digite o nome do volunt·rio:\n");
+				System.out.println("Digite o nome do volunt√°rio:\n");
 				String nome = sc.next();
 				
 				System.out.println("Telefone:");
 				int telefone = sc.nextInt();
 				
-				System.out.println("Data de nascimento:");
-				String dataNascimento = sc.next();
-				
+				try {
+					System.out.println("Data de nascimento: ");
+					String data = sc.next();
+					DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+					Date dt = df.parse(data);
+					System.out.println(dt);
+					voluntarios.setDataNascimento(dt);
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+								
 				System.out.println("Sexo:");
 				String sexo = sc.next();
 				
-				System.out.println("Disponibilidade:\n1 - Manh„\n2 - Tarde\n3 - Noite");
+				System.out.println("Disponibilidade:\n1 - Manh√£\n2 - Tarde\n3 - Noite");
 				int disponibilidade = sc.nextInt();
 				
-				System.out.println("FunÁ„o:\n1 - Veterin·rio\n2 - Motorista\n3 - Limpeza do local\n4 - Limpeza dos animais\n5 - Outro");
+				System.out.println("Fun√ß√£o:\n1 - Veterin√°rio\n2 - Motorista\n3 - Limpeza do local\n4 - Limpeza dos animais\n5 - Outro");
 				int funcao = sc.nextInt();
 				
-				System.out.println("SituaÁ„o:\n1 - Ativo\n2 - Pausado\n3 - Desativo");
+				System.out.println("situa√ß√£o:\n1 - Ativo\n2 - Pausado\n3 - Desativo");
 				int situacao = sc.nextInt();
 				
 				voluntarios.setNome(nome);
 				voluntarios.setTelefone(telefone);
-				voluntarios.setDataNascimento(dataNascimento);
 				voluntarios.setSexo(sexo);
 				voluntarios.setDisponibilidade(disponibilidade);
 				voluntarios.setFuncao(funcao);
 				voluntarios.setSituacao(situacao);
 				
 				resgateAmigo.CadastrarVoluntario(voluntarios);
-				System.out.println("Volunt·rio cadastrado com sucesso!");
+				System.out.println("volunt√°rio cadastrado com sucesso!");
 				
 			}
 			
-			// ALTERAR SITUA«√O DE UM VOLUNT¡RIO
+			// ALTERAR SITUA√á√ÉO DE UM VOLUNT√ÅRIO
 			if (opcao == 10) {
 				if (resgateAmigo.ListarTodosVoluntarios() == true) {
 					System.out.println("Digite o id do Voluntario");
@@ -227,41 +269,41 @@ public static void MenuDoacao() {
 					resgateAmigo.AlterarSituacaoVoluntario(id);
 				}
 				else {
-					System.out.println("N„o existe Volunt·rio no Sistema");
+					System.out.println("N√£o existe volunt√°rio no Sistema");
 				}
 			}
 			
-			// VERIFICAR VOLUNT¡RIOS ATIVOS
+			// VERIFICAR VOLUNT√ÅRIOS ATIVOS
 			if (opcao == 11) {
 				if (resgateAmigo.ListarVoluntariosAtivos() == true) {
 					
 				}
 				else {
-					System.out.println("Nenhum Volunt·rio Ativo no momento");
+					System.out.println("Nenhum volunt√°rio Ativo no momento");
 				}
 			}
 			
-			// VERIFICAR VOLUNT¡RIOS COM PARTICIPA«√O PAUSADA
+			// VERIFICAR VOLUNT√ÅRIOS COM PARTICIPA√á√ÉO PAUSADA
 			if (opcao == 12) {
 				if (resgateAmigo.ListarVoluntariosPausados() == true) {
 					
 				}
 				else {
-					System.out.println("Nenhum Volunt·rio Pausado no momento");
+					System.out.println("Nenhum volunt√°rio Pausado no momento");
 				}
 			}
 			
-			// VERIFICAR VOLUNT¡RIOS DESATIVOS
+			// VERIFICAR VOLUNT√ÅRIOS DESATIVOS
 			if (opcao == 13) {
 				if (resgateAmigo.ListarVoluntariosDesativos() == true) {
 					
 				}
 				else {
-					System.out.println("Nenhum Volunt·rio Desativo no momento");
+					System.out.println("Nenhum volunt√°rio Desativo no momento");
 				}
 			}
 			
-			// CADASTRAR DOA«√O
+			// CADASTRAR DOA√á√ÉO
 			if (opcao == 14) {
 				
 				Doacoes doacoes = new Doacoes();
@@ -281,8 +323,8 @@ public static void MenuDoacao() {
 				System.out.println("Email:");
 				String emailDoador = sc.next();
 				
-				System.out.println("Tipo de doaÁ„o:\n1 - Dinheiro\n2 - Material de limpeza\n3 - Itens para os animais\n4 - Itens para a ONG"
-						+ "\n5 - RaÁ„o para gato\n6 - RaÁ„o para cachorro\n7 - RemÈdio\n8 - Vacina\n");
+				System.out.println("Tipo de doa√ß√£o:\n1 - Dinheiro\n2 - Material de limpeza\n3 - Itens para os animais\n4 - Itens para a ONG"
+						+ "\n5 - Ra√ß√£o para gato\n6 - Ra√ß√£o para cachorro\n7 - Rem√©dio\n8 - Vacina\n");
 				
 				int tipoDoacao = sc.nextInt();
 				
@@ -320,9 +362,10 @@ public static void MenuDoacao() {
 					doacoes.setTipoDoacao("Dinheiro");
 
 					break;
-				case 2: // Material de limpeza
+					// Material de limpeza
+				case 2: 
 					System.out.println("Material de Limpeza:");
-					System.out.println("Digite qual material de limpeza vocÍ ir· doar");
+					System.out.println("Digite qual material de limpeza voc√™ ir√° doar");
 					String material = sc.next();
 					System.out.println("Digite a quantidade");
 					int qtdMaterial = sc.nextInt();
@@ -331,9 +374,10 @@ public static void MenuDoacao() {
 					doacoes.setDoacao(material);
 					doacoes.setQtdDoacao(qtdMaterial);
 					break;
-				case 3: // Itens para animais
+					// Itens para animais
+				case 3: 
 					System.out.println("Intens para animais:");
-					System.out.println("Digite qual item vocÍ deseja doar");
+					System.out.println("Digite qual item voc√™ deseja doar");
 					String itemA = sc.next();
 					System.out.println("Digite a quantidade");
 					int qtdItemA = sc.nextInt();
@@ -342,9 +386,10 @@ public static void MenuDoacao() {
 					doacoes.setQtdDoacao(qtdItemA);
 					doacoes.setDoacao(itemA);
 					break;
-				case 4: // itens para a ONG
+					// itens para a ONG
+				case 4: 
 					System.out.println("Intens para a ONG");
-					System.out.println("Digite qual item vocÍ doar");
+					System.out.println("Digite qual item voc√™ doar");
 					String itemOng = sc.next();
 					System.out.println("Digite a quantidade:");
 					int qtdItemOng = sc.nextInt();
@@ -353,38 +398,42 @@ public static void MenuDoacao() {
 					doacoes.setQtdDoacao(qtdItemOng);
 					doacoes.setDoacao(itemOng);
 					break;
-				case 5: // RaÁ„o para gato
-					System.out.println("RaÁ„o para gato");
-					System.out.println("Digite a quantidade da raÁ„o");
+					// Ra√ß√£o para gato
+				case 5: 
+					System.out.println("Ra√ß√£o para gato");
+					System.out.println("Digite a quantidade da Ra√ß√£o");
 					int qtdRacaoG = sc.nextInt();
 					
-					doacoes.setTipoDoacao("RaÁ„o para Gato");
+					doacoes.setTipoDoacao("Ra√ß√£o para Gato");
 					doacoes.setQtdDoacao(qtdRacaoG);
-					doacoes.setDoacao("RaÁ„o para Gato");
+					doacoes.setDoacao("Ra√ß√£o para Gato");
 					break;
-				case 6: // RaÁ„o para cachorro
-					System.out.println("RaÁ„o para cachorro");
-					System.out.println("Digite a quantidade da raÁ„o");
+					// Ra√ß√£o para cachorro
+				case 6: 
+					System.out.println("Ra√ß√£o para cachorro");
+					System.out.println("Digite a quantidade da Ra√ß√£o");
 					int qtdRacaoC = sc.nextInt();
 					
-					doacoes.setTipoDoacao("RaÁ„o para Cachorro");
+					doacoes.setTipoDoacao("Ra√ß√£o para Cachorro");
 					doacoes.setQtdDoacao(qtdRacaoC);
-					doacoes.setDoacao("RaÁ„o para Cachorro");
+					doacoes.setDoacao("Ra√ß√£o para Cachorro");
 					break;
-				case 7: // RemÈdio
-					System.out.println("RemÈdio");
-					System.out.println("Digite o remÈdio ir· doar");
+					// Rem√©dio
+				case 7: 
+					System.out.println("Rem√©dio");
+					System.out.println("Digite o rem√©dio ir√° doar");
 					String remedio = sc.next();
 					System.out.println("Digite a quantidade");
 					int qtdRemedio = sc.nextInt();
 					
-					doacoes.setTipoDoacao("RemÈdio");
+					doacoes.setTipoDoacao("Rem√©dio");
 					doacoes.setQtdDoacao(qtdRemedio);
 					doacoes.setDoacao(remedio);
 					break;
-				case 8: // Vacina
+					// Vacina
+				case 8: 
 					System.out.println("Vacina");
-					System.out.println("Digite a vacina que ir· doar");
+					System.out.println("Digite a vacina que ir√° doar");
 					String vacina = sc.next();
 					System.out.println("Digite a quantidade");
 					int qtdVacina = sc.nextInt();
@@ -397,21 +446,28 @@ public static void MenuDoacao() {
 					break;
 				}
 				
-				System.out.println("Data:");
-				String dataDoacao = sc.next();
-				
+				try {
+					System.out.println("Data dessa doa√ß√£o:");
+					String dataDoacao = sc.next();
+					DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+					Date dt = df.parse(dataDoacao);
+					doacoes.setDataDoacao(dt);
+				} catch (Exception e) {
+					e.printStackTrace();
+					// TODO: handle exception
+				}
+
 				doacoes.setNomeDoador(nomeDoador);
 				doacoes.setCpfDoador(cpfDoador);
 				doacoes.setDataNascDoador(dataNascDoador);
 				doacoes.setTelefoneDoador(telefoneDoador);
 				doacoes.setEmailDoador(emailDoador);
-				doacoes.setDataDoacao(dataDoacao);
 				
 				resgateAmigo.CadastrarDoacoes(doacoes);
-				System.out.println("DoaÁ„o cadastrada com sucesso!");
+				System.out.println("doa√ß√£o cadastrada com sucesso!");
 			}
 			
-			// VER DOA«’ES
+			// VER DOA√á√ïES
 			if (opcao == 15) {
 				System.out.println(resgateAmigo.ListarDoacoes());
 			}
