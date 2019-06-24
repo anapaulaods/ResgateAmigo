@@ -5,7 +5,6 @@ import java.util.Date;
 public class Voluntarios {
 	
 	private String nome;
-	private int idVoluntario;
 	private String telefone;
 	private Date dataNascimento;
 	private String sexo;
@@ -13,19 +12,20 @@ public class Voluntarios {
 	private int funcao;
 	private int situacao;
 	private String motivo;
+	private String cpf;
+	
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 	
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	
-	public int getIdVoluntario() {
-		return idVoluntario;
-	}
-	public void setIdVoluntario(int idVoluntario) {
-		this.idVoluntario = idVoluntario;
 	}
 	
 	public String getTelefone() {

@@ -4,6 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+import ifrn.edu.diatinf.tads.poo.java.exceptions.AnimalJaAdotado;
+import ifrn.edu.diatinf.tads.poo.java.exceptions.AnimalJaCastrado;
+import ifrn.edu.diatinf.tads.poo.java.exceptions.AnimalNaoEncontrado;
+import ifrn.edu.diatinf.tads.poo.java.exceptions.VoluntarioJaCadastrado;
+import ifrn.edu.diatinf.tads.poo.java.exceptions.VoluntarioNaoEncontrado;
+
 
 	public class ResgateAmigo {
 
@@ -58,28 +64,31 @@ import java.util.Scanner;
 		
 	}
 	
-	public void CastrarAnimal(int numero) {
+	public void CastrarAnimal(int numero) throws AnimalJaCastrado {
 		Animal a = null;
 		int castrado = 1;
 		for (int i = 0; i < qtdAnimais; i++) {
 			if (i == numero) {
 				a = animais[i];
 				if (a.getCastrado() == 1) {
-					System.out.println("Esse Animaljá foi castrado");
+					throw new AnimalJaCastrado();
 				}
 				if (a.getCastrado() == 2) {
 					a.setCastrado(castrado);
-					System.out.println("Animal " + a.getNome() + " foi castrado com Sucesso");
+					System.out.println("Animal " + a.getNome() + " foi castrado com sucesso");
 				}
 			}
 		}
 	}
 		
-	public void AdotarAnimal(int numero) {
+	public void AdotarAnimal(int numero) throws AnimalJaAdotado, AnimalNaoEncontrado {
 		Animal a = null;
 		String situacao = "Adotado";
 		
 		for (int i = 0; i < qtdAnimais; i++) {
+			if (animais[i].getSituacao().equals(situacao)) {
+				throw new AnimalJaAdotado();
+			}
 			if (animais[i].getSituacao().equals("1")) {
 				if(i == numero) {
 					a = animais[i];
@@ -91,7 +100,7 @@ import java.util.Scanner;
 			}
 		}
 		if(a == null) {
-			System.out.println("Desculpe, não encontramos esse animal");
+			throw new AnimalNaoEncontrado();
 		}
 	}
 		
@@ -185,18 +194,28 @@ import java.util.Scanner;
 	}
 	
 	
-	// CLASSE VOLUNTÁRIOS
-	public void CadastrarVoluntario(Voluntarios v) {
+	// CLASSE VOLUNTÃ�RIOS
+	public void CadastrarVoluntario(Voluntarios v) throws VoluntarioJaCadastrado {
 		if (qtdVoluntarios == voluntarios.length) 
 			duplicarCapacidadeVoluntarios();
-			
+		
+		for (int i = 0; i < qtdVoluntarios; i++) {
+			if (voluntarios[i].getCpf().equals(v.getCpf())) {
+				throw new VoluntarioJaCadastrado();
+			}
+		}
 			voluntarios[qtdVoluntarios] = v;
 			qtdVoluntarios++;
 	}
 	
-	public void AlterarSituacaoVoluntario(int id) {
+	public void AlterarSituacaoVoluntario(int id) throws VoluntarioNaoEncontrado {
 		Voluntarios v = null;
 		for (int i = 0; i < qtdVoluntarios; i++) {
+			
+			if (i != id) {
+				throw new VoluntarioNaoEncontrado();
+			}
+			
 			if (i == id) {
 				v = voluntarios[i];
 				System.out.println("Voluntário: " + v.getNome() + "\nSituação: " + v.getSituacao());
@@ -205,16 +224,17 @@ import java.util.Scanner;
 				
 				if (situacao == 1) {
 					v.setSituacao(situacao);
-					System.out.println("Situação Atualizada com Sucesso");
+					System.out.println("Situação atualizada com sucesso");
 				}
 				
 				else if (situacao == 2 || situacao == 3) {
+					Scanner scLine = new Scanner(System.in);
 					System.out.println("Digite o motivo");
-					String motivo = sc.next();
+					String motivo = scLine.nextLine();
 					
 					v.setMotivo(motivo);
 					v.setSituacao(situacao);
-					System.out.println("Situação Atualizada com Sucesso");
+					System.out.println("Situação atualizada com sucesso");
 				}
 				
 				else {
@@ -224,7 +244,7 @@ import java.util.Scanner;
 		}
 	}
 	
-	// LISTAR VOLUNTÁRIOS
+	// LISTAR VOLUNTÃ�RIOS
 	public boolean ListarTodosVoluntarios() {
 		if (qtdVoluntarios == 0) {
 			return false;
@@ -322,13 +342,13 @@ import java.util.Scanner;
 				sb.append("\n");
 				sb.append("CPF: "+ d.getCpfDoador());
 				sb.append("\n");
-				sb.append("Tipo da Doação: "+ d.getTipoDoacao());
+				sb.append("Tipo da DoaÃ§Ã£o: "+ d.getTipoDoacao());
 				sb.append("\n");
-				sb.append("Doação: " + d.getDoacao());
+				sb.append("DoaÃ§Ã£o: " + d.getDoacao());
 				sb.append("\n");
 				sb.append("Quantidade: " + d.getQtdDoacao());
 				sb.append("\n");
-				sb.append("Data da Doação: " + d.getDataDoacao());
+				sb.append("Data da DoaÃ§Ã£o: " + d.getDataDoacao());
 				sb.append("\n");
 			}
 			return sb.toString();
