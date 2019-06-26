@@ -19,15 +19,14 @@ public static void Menu() {
 	System.out.println("|4| - Verificar animais que foram adotados");
 	System.out.println("|5| - Verificar animais disponíveis para adoção");
 	System.out.println("|6| - Verificar animais em tratamento");
-	System.out.println("|7| - Cadastrar vacina no animal");
-	System.out.println("|8| - Castrar animal");
-	System.out.println("|9| - Cadastrar um voluntário");
-	System.out.println("|10| - Alterar situação de um voluntário");
-	System.out.println("|11| - Verificar voluntários ativos");
-	System.out.println("|12| - Verificar voluntários com participação pausada");
-	System.out.println("|13| - Verificar voluntários desativos");
-	System.out.println("|14| - Cadastrar doação");
-	System.out.println("|15| - Ver doações");
+	System.out.println("|7| - Castrar animal");
+	System.out.println("|8| - Cadastrar um voluntário");
+	System.out.println("|9| - Alterar situação de um voluntário");
+	System.out.println("|10| - Verificar voluntários ativos");
+	System.out.println("|11| - Verificar voluntários com participação pausada");
+	System.out.println("|12| - Verificar voluntários desativos");
+	System.out.println("|13| - Cadastrar doação");
+	System.out.println("|14| - Ver doações");
 	System.out.println("|0| - Sair");
 	System.out.print("\nDigite a opção escolhida:\n ");
 }
@@ -69,10 +68,10 @@ public static void MenuDoacao() {
 		
 		resgateAmigo.CadastrarAnimal(a);
 		
-		// VOLUNTÃ�RIO
+		// VOLUNTÁRIO
 		v.setNome("Plácido");
-		v.setCpf("111111111");
-		v.setTelefone("998673234");
+		v.setCpf("111");
+		v.setTelefone("900000000");
 	    
 		DateFormat f1 = new SimpleDateFormat("dd/MM/yyyy");
 		Date datanasc;
@@ -117,7 +116,7 @@ public static void MenuDoacao() {
 				System.out.println("Digite o número correspondente a situação do animal:\n1 - Para adoção\n2 - Em tratamento");
 				String situacao = sc.next();
 				
-				System.out.println("O animal é castrado?\n1 - Sim\n2 - NÃ£o");
+				System.out.println("O animal é castrado?\n1 - Sim\n2 - Não");
 				int castrado = sc.nextInt();
 				
 				try {
@@ -171,7 +170,7 @@ public static void MenuDoacao() {
 					
 				}
 				else {
-					System.out.println("Nenhum animal foi adotado no momento");
+					System.out.println("Nenhum animal foi adotado no momento.");
 				}
 			}
 			
@@ -181,7 +180,7 @@ public static void MenuDoacao() {
 					
 				}
 				else {
-					System.out.println("Nenhum animal disponível para adoção");
+					System.out.println("Nenhum animal disponível para adoção.");
 				}
 			}
 			
@@ -191,21 +190,21 @@ public static void MenuDoacao() {
 					
 				}
 				else {
-					System.out.println("Nenhum animal em tratamento");
+					System.out.println("Nenhum animal em tratamento.");
 				}
 			}
 			
 			// CASTRAR ANIMAL
-			if (opcao == 8) {
+			if (opcao == 7) {
 				
 				try {
 					if (resgateAmigo.ListarAnimaisParaCastrar() == true) {
-						System.out.println("Digite o numero do animal para castrar");
+						System.out.println("Digite o numero do animal para castrar:");
 						int numero = sc.nextInt();
 						resgateAmigo.CastrarAnimal(numero);
 					}
 					else {
-						System.out.println("Não existe animais disponíveis para castrar");
+						System.out.println("Não existe animais disponíveis para castrar.");
 					}
 				} catch (Exception e) {
 					// TODO: handle exception
@@ -214,7 +213,7 @@ public static void MenuDoacao() {
 			}
 			
 			// CADASTRAR UM VOLUNTÁRIO
-			if (opcao == 9) {
+			if (opcao == 8) {
 				Voluntarios voluntarios = new Voluntarios();
 				Scanner scLine = new Scanner(System.in);
 				
@@ -271,15 +270,16 @@ public static void MenuDoacao() {
 			}
 			
 			// ALTERAR SITUAÇÃO DE UM VOLUNTÁRIO
-			if (opcao == 10) {
+			if (opcao == 9) {
 				try {
 					if (resgateAmigo.ListarTodosVoluntarios() == true) {
-						System.out.println("Digite o id do voluntario");
-						int id = sc.nextInt();
-						resgateAmigo.AlterarSituacaoVoluntario(id);
+						Scanner scLine = new Scanner(System.in);
+						System.out.println("Digite o CPF do voluntario:");
+						String cpf = scLine.nextLine();
+						resgateAmigo.AlterarSituacaoVoluntario(cpf);
 					}
 					else {
-						System.out.println("Não existe voluntário no sistema");
+						System.out.println("Não existe voluntário no sistema.");
 					}
 					
 				} catch (Exception e) {
@@ -288,28 +288,28 @@ public static void MenuDoacao() {
 
 			}
 			
-			// VERIFICAR VOLUNTÃ�RIOS ATIVOS
-			if (opcao == 11) {
+			// VERIFICAR VOLUNTÁRIOS ATIVOS
+			if (opcao == 10) {
 				if (resgateAmigo.ListarVoluntariosAtivos() == true) {
 					
 				}
 				else {
-					System.out.println("Nenhum voluntário ativo no momento");
+					System.out.println("Nenhum voluntário ativo no momento.");
 				}
 			}
 			
-			// VERIFICAR VOLUNTÁRIOS COM PARTICIPAÇÃO PAUSADA
-			if (opcao == 12) {
+			// VERIFICAR VOLUNTÃ�RIOS COM PARTICIPAÃ‡ÃƒO PAUSADA
+			if (opcao == 11) {
 				if (resgateAmigo.ListarVoluntariosPausados() == true) {
 					
 				}
 				else {
-					System.out.println("Nenhum voluntário pausado no momento");
+					System.out.println("Nenhum voluntário pausado no momento.");
 				}
 			}
 			
 			// VERIFICAR VOLUNTÁRIOS DESATIVOS
-			if (opcao == 13) {
+			if (opcao == 12) {
 				if (resgateAmigo.ListarVoluntariosDesativos() == true) {
 					
 				}
@@ -319,7 +319,7 @@ public static void MenuDoacao() {
 			}
 			
 			// CADASTRAR DOAÇÃO
-			if (opcao == 14) {
+			if (opcao == 13) {
 				
 				Doacoes doacoes = new Doacoes();
 				Scanner scLine = new Scanner(System.in);
@@ -353,7 +353,7 @@ public static void MenuDoacao() {
 				int tipoDoacao = sc.nextInt();
 				
 				switch (tipoDoacao) {
-				case 1: // dinheiro
+				case 1: // DINHEIRO
 					MenuDoacao();
 					int op = sc.nextInt();
 					
@@ -386,34 +386,34 @@ public static void MenuDoacao() {
 					doacoes.setTipoDoacao("Dinheiro");
 
 					break;
-					// Material de limpeza
+					// MATERIAL DE LIMPEZA
 				case 2: 
 					System.out.println("Material de Limpeza:");
-					System.out.println("Digite qual material de limpeza você irá doar");
+					System.out.println("Digite qual material de limpeza você irá doar:");
 					String material = scLine.nextLine();
-					System.out.println("Digite a quantidade");
+					System.out.println("Digite a quantidade:");
 					int qtdMaterial = sc.nextInt();
 					
 					doacoes.setTipoDoacao("Material de limpeza");
 					doacoes.setDoacao(material);
 					doacoes.setQtdDoacao(qtdMaterial);
 					break;
-					// Itens para animais
+					// IENS PARA ANIMAIS
 				case 3: 
-					System.out.println("Intens para animais:");
-					System.out.println("Digite qual item você deseja doar");
+					System.out.println("Intens para animais");
+					System.out.println("Digite qual item você deseja doar:");
 					String itemA = scLine.nextLine();
-					System.out.println("Digite a quantidade");
+					System.out.println("Digite a quantidade:");
 					int qtdItemA = sc.nextInt();
 					
-					doacoes.setTipoDoacao("Itens para animais");
+					doacoes.setTipoDoacao("Itens para animais:");
 					doacoes.setQtdDoacao(qtdItemA);
 					doacoes.setDoacao(itemA);
 					break;
 					// itens para a ONG
 				case 4: 
 					System.out.println("Intens para a ONG");
-					System.out.println("Digite qual item você doar");
+					System.out.println("Digite qual item você irá doar:");
 					String itemOng = scLine.nextLine();
 					System.out.println("Digite a quantidade:");
 					int qtdItemOng = sc.nextInt();
@@ -422,7 +422,7 @@ public static void MenuDoacao() {
 					doacoes.setQtdDoacao(qtdItemOng);
 					doacoes.setDoacao(itemOng);
 					break;
-					// Ração para gato
+					// RAÇÃO PARA GATO
 				case 5: 
 					System.out.println("Ração para gato");
 					System.out.println("Digite a quantidade da ração");
@@ -432,7 +432,7 @@ public static void MenuDoacao() {
 					doacoes.setQtdDoacao(qtdRacaoG);
 					doacoes.setDoacao("Ração para gato");
 					break;
-					// Ração para cachorro
+					// RAÇÃO PARA CACHORRO
 				case 6: 
 					System.out.println("Ração para cachorro");
 					System.out.println("Digite a quantidade da ração");
@@ -440,21 +440,21 @@ public static void MenuDoacao() {
 					
 					doacoes.setTipoDoacao("Ração para cachorro");
 					doacoes.setQtdDoacao(qtdRacaoC);
-					doacoes.setDoacao("Ração para Cachorro");
+					doacoes.setDoacao("Ração para cachorro");
 					break;
-					// Remédio
+					// REMÉDIO
 				case 7: 
 					System.out.println("Remédio");
-					System.out.println("Digite o remédio irá doar");
+					System.out.println("Digite o remédio que irá doar:");
 					String remedio = scLine.nextLine();
-					System.out.println("Digite a quantidade");
+					System.out.println("Digite a quantidade:");
 					int qtdRemedio = sc.nextInt();
 					
 					doacoes.setTipoDoacao("Remédio");
 					doacoes.setQtdDoacao(qtdRemedio);
 					doacoes.setDoacao(remedio);
 					break;
-					// Vacina
+					// VACINA
 				case 8: 
 					System.out.println("Vacina");
 					System.out.println("Digite a vacina que irá doar");
@@ -491,7 +491,7 @@ public static void MenuDoacao() {
 			}
 			
 			// VER DOAÇÕES
-			if (opcao == 15) {
+			if (opcao == 14) {
 				System.out.println(resgateAmigo.ListarDoacoes());
 			}
 		}

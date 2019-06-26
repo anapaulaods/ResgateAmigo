@@ -194,7 +194,7 @@ import ifrn.edu.diatinf.tads.poo.java.exceptions.VoluntarioNaoEncontrado;
 	}
 	
 	
-	// CLASSE VOLUNTÃ�RIOS
+	// CLASSE VOLUNTÁRIOS
 	public void CadastrarVoluntario(Voluntarios v) throws VoluntarioJaCadastrado {
 		if (qtdVoluntarios == voluntarios.length) 
 			duplicarCapacidadeVoluntarios();
@@ -208,15 +208,11 @@ import ifrn.edu.diatinf.tads.poo.java.exceptions.VoluntarioNaoEncontrado;
 			qtdVoluntarios++;
 	}
 	
-	public void AlterarSituacaoVoluntario(int id) throws VoluntarioNaoEncontrado {
+	public void AlterarSituacaoVoluntario(String cpf) throws VoluntarioNaoEncontrado {
 		Voluntarios v = null;
 		for (int i = 0; i < qtdVoluntarios; i++) {
 			
-			if (i != id) {
-				throw new VoluntarioNaoEncontrado();
-			}
-			
-			if (i == id) {
+			if (voluntarios[i].getCpf().equals(cpf)) {
 				v = voluntarios[i];
 				System.out.println("Voluntário: " + v.getNome() + "\nSituação: " + v.getSituacao());
 				System.out.println("Atualizar Situação:\n1 - Ativo\n2 - Pausado\n3 - Desativo");
@@ -244,7 +240,7 @@ import ifrn.edu.diatinf.tads.poo.java.exceptions.VoluntarioNaoEncontrado;
 		}
 	}
 	
-	// LISTAR VOLUNTÃ�RIOS
+	// LISTAR VOLUNTÁRIOS
 	public boolean ListarTodosVoluntarios() {
 		if (qtdVoluntarios == 0) {
 			return false;
@@ -253,7 +249,7 @@ import ifrn.edu.diatinf.tads.poo.java.exceptions.VoluntarioNaoEncontrado;
 			Voluntarios v = null;
 			for (int i = 0; i < qtdVoluntarios; i++) {
 				v = voluntarios[i];
-				System.out.println(i + " - " + v.getNome());
+				System.out.println(i + " - " + v.getNome() + " CPF: " + v.getCpf());
 			}
 			return true;
 		}
@@ -342,13 +338,13 @@ import ifrn.edu.diatinf.tads.poo.java.exceptions.VoluntarioNaoEncontrado;
 				sb.append("\n");
 				sb.append("CPF: "+ d.getCpfDoador());
 				sb.append("\n");
-				sb.append("Tipo da DoaÃ§Ã£o: "+ d.getTipoDoacao());
+				sb.append("Tipo da Doação: "+ d.getTipoDoacao());
 				sb.append("\n");
-				sb.append("DoaÃ§Ã£o: " + d.getDoacao());
+				sb.append("Doação: " + d.getDoacao());
 				sb.append("\n");
 				sb.append("Quantidade: " + d.getQtdDoacao());
 				sb.append("\n");
-				sb.append("Data da DoaÃ§Ã£o: " + d.getDataDoacao());
+				sb.append("Data da Doação: " + d.getDataDoacao());
 				sb.append("\n");
 			}
 			return sb.toString();

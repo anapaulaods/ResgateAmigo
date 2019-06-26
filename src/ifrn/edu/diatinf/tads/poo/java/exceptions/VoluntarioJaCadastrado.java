@@ -4,7 +4,7 @@ public class VoluntarioJaCadastrado extends Exception {
 	
 	// Será identificado pelo CPF (CPF já cadastrado)
 	public VoluntarioJaCadastrado() {
-		System.err.println("CPF já cadastrado");
+		System.err.println("CPF já cadastrado.");
 	}
 	
 }
